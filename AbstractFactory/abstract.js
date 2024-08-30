@@ -1,67 +1,122 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var CarProductA = /** @class */ (function () {
-    function CarProductA() {
+var SportShirt = /** @class */ (function () {
+    function SportShirt() {
     }
-    CarProductA.prototype.deliver = function () {
-        return "Car: Delivery with speed";
+    SportShirt.prototype.hasButtons = function () {
+        return false;
     };
-    return CarProductA;
+    SportShirt.prototype.hasLongSleeves = function () {
+        return false;
+    };
+    return SportShirt;
 }());
-var TruckProductA = /** @class */ (function () {
-    function TruckProductA() {
+var GalaShirt = /** @class */ (function () {
+    function GalaShirt() {
     }
-    TruckProductA.prototype.deliver = function () {
-        return "Truck: Delivery with heavy load";
+    GalaShirt.prototype.hasButtons = function () {
+        return true;
     };
-    return TruckProductA;
+    GalaShirt.prototype.hasLongSleeves = function () {
+        return true;
+    };
+    return GalaShirt;
 }());
-var CarProductB = /** @class */ (function () {
-    function CarProductB() {
+var SportShoe = /** @class */ (function () {
+    function SportShoe() {
     }
-    CarProductB.prototype.capacity = function () {
-        return "Car: Capacity of 5 passengers";
+    SportShoe.prototype.isElegantShoes = function () {
+        return false;
     };
-    return CarProductB;
+    SportShoe.prototype.isRunningShoes = function () {
+        return true;
+    };
+    return SportShoe;
 }());
-var TruckProductB = /** @class */ (function () {
-    function TruckProductB() {
+var GalaShoe = /** @class */ (function () {
+    function GalaShoe() {
     }
-    TruckProductB.prototype.capacity = function () {
-        return "Truck: Capacity of 20 tons";
+    GalaShoe.prototype.isElegantShoes = function () {
+        return true;
     };
-    return TruckProductB;
+    GalaShoe.prototype.isRunningShoes = function () {
+        return false;
+    };
+    return GalaShoe;
 }());
-var CarFactory = /** @class */ (function () {
-    function CarFactory() {
+var SportTrousers = /** @class */ (function () {
+    function SportTrousers() {
     }
-    CarFactory.prototype.createTransportA = function () {
-        return new CarProductA();
+    SportTrousers.prototype.hasPockets = function () {
+        return false;
     };
-    CarFactory.prototype.createTransportB = function () {
-        return new CarProductB();
+    SportTrousers.prototype.getClosureType = function () {
+        return "Doesn't have closure type";
     };
-    return CarFactory;
+    return SportTrousers;
 }());
-var TruckFactory = /** @class */ (function () {
-    function TruckFactory() {
+var GalaTrousers = /** @class */ (function () {
+    function GalaTrousers() {
     }
-    TruckFactory.prototype.createTransportA = function () {
-        return new TruckProductA();
+    GalaTrousers.prototype.hasPockets = function () {
+        return true;
     };
-    TruckFactory.prototype.createTransportB = function () {
-        return new TruckProductB();
+    GalaTrousers.prototype.getClosureType = function () {
+        return "Closure Gala type";
     };
-    return TruckFactory;
+    return GalaTrousers;
 }());
-var someCode = function (factory) {
-    var transportA = factory.createTransportA();
-    var transportB = factory.createTransportB();
-    console.log(transportA.deliver());
-    console.log(transportB.capacity());
-};
-console.log('Client: Testing client code with the Car factory...');
-someCode(new CarFactory());
-console.log('');
-console.log('Client: Testing client code with the Truck factory...');
-someCode(new TruckFactory());
+var SportClothesFactory = /** @class */ (function () {
+    function SportClothesFactory() {
+    }
+    SportClothesFactory.prototype.createShoes = function () {
+        return new SportShoe();
+    };
+    SportClothesFactory.prototype.createShirt = function () {
+        return new SportShirt();
+    };
+    SportClothesFactory.prototype.createTrouser = function () {
+        return new SportTrousers();
+    };
+    return SportClothesFactory;
+}());
+var GalaClothesFactory = /** @class */ (function () {
+    function GalaClothesFactory() {
+    }
+    GalaClothesFactory.prototype.createShoes = function () {
+        return new GalaShoe();
+    };
+    GalaClothesFactory.prototype.createShirt = function () {
+        return new GalaShirt();
+    };
+    GalaClothesFactory.prototype.createTrouser = function () {
+        return new GalaTrousers();
+    };
+    return GalaClothesFactory;
+}());
+// Creation and Logging
+var sportFactory = new SportClothesFactory();
+var galaFactory = new GalaClothesFactory();
+var sportShirt = sportFactory.createShirt();
+var sportShoe = sportFactory.createShoes();
+var sportTrousers = sportFactory.createTrouser();
+console.log("Sport Shirt:");
+console.log("  Has Buttons:", sportShirt.hasButtons());
+console.log("  Has Long Sleeves:", sportShirt.hasLongSleeves());
+console.log("Sport Shoe:");
+console.log("  Is Elegant Shoes:", sportShoe.isElegantShoes());
+console.log("  Is Running Shoes:", sportShoe.isRunningShoes());
+console.log("Sport Trousers:");
+console.log("  Has Pockets:", sportTrousers.hasPockets());
+console.log("  Closure Type:", sportTrousers.getClosureType());
+console.log("\n---\n");
+var galaShirt = galaFactory.createShirt();
+var galaShoe = galaFactory.createShoes();
+var galaTrousers = galaFactory.createTrouser();
+console.log("Gala Shirt:");
+console.log("  Has Buttons:", galaShirt.hasButtons());
+console.log("  Has Long Sleeves:", galaShirt.hasLongSleeves());
+console.log("Gala Shoe:");
+console.log("  Is Elegant Shoes:", galaShoe.isElegantShoes());
+console.log("  Is Running Shoes:", galaShoe.isRunningShoes());
+console.log("Gala Trousers:");
+console.log("  Has Pockets:", galaTrousers.hasPockets());
+console.log("  Closure Type:", galaTrousers.getClosureType());
