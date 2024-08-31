@@ -13,8 +13,8 @@ var Database = /** @class */ (function () {
     return Database;
 }());
 function clientCode() {
-    var s1 = Database.getInstance();
-    var s2 = Database.getInstance();
+    let s1 = Database.getInstance();
+    let s2 = Database.getInstance();
     if (s1 === s2) {
         console.log("Singleton works, both variables contain the same instance.");
         s1.someBussinessLogic();
